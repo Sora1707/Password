@@ -1,0 +1,16 @@
+{
+    "imageUrl": {
+        "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/1200px-TikTok_logo.svg.png",
+        "defaultAvatar": "/images/avatars/iroha.jpg"
+    },
+    "supportedApp": [
+        { "app": "facebook", "color": "#1b74e4" },
+        { "app": "twitter", "color": "#1d9bf0" },
+        { "app": "reddit", "color": "#ff4500" },
+        { "app": "google", "color": "gray" },
+        { "app": "apple", "color": "black" },
+        { "app": "microsoft", "color": "black" },
+        { "app": "steam", "color": "#183046" },
+        { "app": "code", "color": "black" }
+    ]
+}

@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Facebook",
+        "app": "facebook",
+        "user": "sora",
+        "username": "test@gmail.com",
+        "password": "test123",
+        "id": 0
+    },
+    {
+        "title": "Reddit",
+        "app": "reddit",
+        "user": "sora",
+        "username": "test@gmail.com",
+        "password": "test123",
+        "id": 1
+    },
+    {
+        "title": "Steam",
+        "app": "steam",
+        "user": "sora",
+        "username": "test@gmail.com",
+        "password": "test123",
+        "id": 2
+    },
+    {
+        "title": "Gmail",
+        "app": "google",
+        "user": "sora",
+        "username": "test@gmail.com",
+        "password": "test123",
+        "id": 3
+    }
+]

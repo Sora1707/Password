@@ -1,0 +1,33 @@
+.button {
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-size: 1.6rem;
+    color: var(--black);
+    background-color: var(--white);
+    display: flex;
+    justify-content: flex-start;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(179, 179, 179, 0.1);
+    }
+}
+
+.button > *:not(:last-child) {
+    margin-right: 15px;
+}
+
+.primary {
+    color: var(--black);
+    background-color: var(--primary-color);
+}
+
+.plain {
+    color: var(--black);
+    background-color: var(--white);
+    border: lightgray solid 1px;
+
+    &:hover {
+        background-color: rgba(179, 179, 179, 0.1);
+    }
+}
