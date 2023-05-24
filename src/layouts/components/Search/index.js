@@ -5,12 +5,13 @@ import {
     faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tippy from "@tippyjs/react";
 import HeadlessTippy from "@tippyjs/react/headless";
 
 // LOCAL MODULES/FILE
 import { getStyle } from "~/utils";
+import { userSearch, accountSearch } from "~/services/search";
 import { PopperWrapper } from "~/components/Popper";
 import CircleAvatar from "~/components/CircleAvatar";
 import UserItem from "~/components/UserItem";
@@ -23,8 +24,16 @@ const accounts = require("~/database/accounts.json");
 
 function Search() {
     const [searchResult, setSearchResult] = useState("");
-    const [usersResult, setUsersResult] = useState(users);
+    const [usersResult, setUsersResult] = useState(Object.entries(users));
     const [accountsResult, setAccountsResult] = useState(accounts);
+
+    useEffect(() => {
+        console.log(searchResult);
+        const newUsers = userSearch(searchResult);
+        const newAccounts = accountSearch(searchResult);
+        setUsersResult(newUsers);
+        setAccountsResult(newAccounts);
+    }, [searchResult]);
 
     const handleChange = e => {
         setSearchResult(e.target.value);
@@ -41,21 +50,27 @@ function Search() {
                         {...attrs}
                     >
                         <PopperWrapper>
-                            <h5 className={cx("search-title")}>User</h5>
-                            {Object.entries(users).map(
-                                ([username, data], index) => {
-                                    return (
-                                        <UserItem
-                                            key={index}
-                                            avatar={data.avatar}
-                                            user={username}
-                                            nickname={data.nickname}
-                                        />
-                                    );
-                                }
+                            {usersResult.length === 0 ? (
+                                false
+                            ) : (
+                                <h5 className={cx("search-title")}>User</h5>
                             )}
-                            <h5 className={cx("search-title")}>Account</h5>
-                            {accounts.map((account, index) => {
+                            {usersResult.map(([username, data], index) => {
+                                return (
+                                    <UserItem
+                                        key={index}
+                                        avatar={data.avatar}
+                                        user={username}
+                                        nickname={data.nickname}
+                                    />
+                                );
+                            })}
+                            {accountsResult.length === 0 ? (
+                                false
+                            ) : (
+                                <h5 className={cx("search-title")}>Account</h5>
+                            )}
+                            {accountsResult.map((account, index) => {
                                 return (
                                     <AccountItem
                                         key={index}
@@ -73,7 +88,7 @@ function Search() {
             <div className={cx("search")}>
                 <input
                     value={searchResult}
-                    placeholder="Search for account"
+                    placeholder="Search for something..."
                     onChange={handleChange}
                 />
                 {/* <button className={cx("clear")}>
