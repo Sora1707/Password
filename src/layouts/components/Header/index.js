@@ -54,7 +54,7 @@ const userOptions = [
     {
         title: "Profile",
         icon: faUser,
-        link: `/user/${currentUser}`,
+        to: `/user/${currentUser}`,
     },
     ...MENU_OPTIONS,
 ];
@@ -69,14 +69,13 @@ function Header() {
             <Search />
 
             <div className={cx("actions")}>
-                <Link to={routes.add}>
-                    <Button
-                        plain
-                        beforeIcon={<FontAwesomeIcon icon={faPlus} />}
-                    >
-                        Add
-                    </Button>
-                </Link>
+                <Button
+                    to={routes.add}
+                    plain
+                    beforeIcon={<FontAwesomeIcon icon={faPlus} />}
+                >
+                    Add
+                </Button>
                 <button className={cx("dark-mode")}>
                     <FontAwesomeIcon icon={faMoon} />
                 </button>

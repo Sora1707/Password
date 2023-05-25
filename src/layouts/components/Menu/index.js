@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PopperWrapper } from "~/components/Popper";
 import { getStyle } from "~/utils";
 import MenuItem from "./MenuItem";
+import UserItem from "~/components/UserItem";
 import Header from "./Header";
 
 const cx = getStyle(require("./Menu.module.scss").default);
@@ -49,15 +50,27 @@ function Menu({ children, options }) {
                                           ]);
                                       };
 
-                                return (
-                                    <MenuItem
-                                        key={index}
-                                        icon={option.icon}
-                                        onClick={onClick}
-                                    >
-                                        {option.title}
-                                    </MenuItem>
-                                );
+                                const renderItem =
+                                    current.title === "Users" ? (
+                                        <UserItem
+                                            key={index}
+                                            avatar={option[1].avatar}
+                                            nickname={option[1].nickname}
+                                            user={option[0]}
+                                        />
+                                    ) : (
+                                        <MenuItem
+                                            key={index}
+                                            icon={option.icon}
+                                            onClick={onClick}
+                                            to={option.to}
+                                            href={option.href}
+                                        >
+                                            {option.title}
+                                        </MenuItem>
+                                    );
+
+                                return renderItem;
                             })}
                         </PopperWrapper>
                     </div>

@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { Fragment, createElement } from "react";
+import { Link } from "react-router-dom";
 
 import { getStyle } from "~/utils";
 
@@ -12,13 +14,19 @@ function Button({
     plain,
     beforeIcon,
     afterIcon,
+    to,
+    href,
 }) {
     const classes = cx("button", { primary, plain });
+    const Component = href ? "a" : Link;
+
     return (
         <button className={classes} onClick={onClick}>
-            {beforeIcon}
-            <span>{children}</span>
-            {afterIcon}
+            <Component className={cx("link")} to={to} href={href}>
+                {beforeIcon}
+                <span>{children}</span>
+                {afterIcon}
+            </Component>
         </button>
     );
 }

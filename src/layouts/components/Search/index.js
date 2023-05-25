@@ -22,7 +22,7 @@ import { useDebounce } from "~/hooks";
 // VARIABLES
 const cx = getStyle(require("./Search.module.scss").default);
 
-const SEARCH_DELAY = 1000;
+const SEARCH_DELAY = 600;
 const USER = "soravn";
 
 function Search() {
