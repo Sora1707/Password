@@ -1,6 +1,6 @@
 .wrapper {
     width: var(--sidebar-width);
-    padding-top: 20px;
+    padding-top: var(--default-layout-padding-top);
 }
 
 .title {

@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const cx = getStyle(require("./MenuItem.module.scss").default);
 
 function MenuItem({ icon, children, onClick, ...props }) {
-    const beforeIcon = <FontAwesomeIcon icon={icon} />;
     return (
         <div className={cx("wrapper")}>
-            <Button onClick={onClick} beforeIcon={beforeIcon}>
+            <Button
+                onClick={onClick}
+                beforeIcon={icon ? <FontAwesomeIcon icon={icon} /> : false}
+            >
                 {children}
             </Button>
         </div>

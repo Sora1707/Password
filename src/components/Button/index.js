@@ -36,6 +36,8 @@ Button.propTypes = {
     beforeIcon: PropTypes.node,
     afterIcon: PropTypes.node,
     onClick: PropTypes.func,
+    to: PropTypes.string,
+    href: PropTypes.string,
 };
 
 export default Button;
