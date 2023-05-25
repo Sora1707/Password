@@ -18,10 +18,10 @@ import CircleAvatar from "~/components/CircleAvatar";
 import Button from "~/components/Button";
 import { PopperWrapper } from "~/components/Popper";
 import Menu from "../Menu";
+import { userSearch } from "~/services/search";
 
 // VARIABLES
 const { logo, defaultAvatar } = require("~/constants.json").imageUrl;
-const users = require("~/database/users.json");
 const cx = getStyle(require("./Header.module.scss").default);
 
 const currentUser = "sora";
@@ -45,7 +45,7 @@ const MENU_OPTIONS = [
         icon: faLock,
         children: {
             title: "Users",
-            data: users,
+            data: userSearch(""),
         },
     },
 ];
@@ -54,6 +54,7 @@ const userOptions = [
     {
         title: "Profile",
         icon: faUser,
+        link: `/user/${currentUser}`,
     },
     ...MENU_OPTIONS,
 ];

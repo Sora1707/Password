@@ -2,12 +2,13 @@ import PropTypes from "prop-types";
 
 import { getStyle } from "~/utils";
 import CircleAvatar from "../CircleAvatar";
+import { Link } from "react-router-dom";
 
 const cx = getStyle(require("./UserItem.module.scss").default);
 
 function UserItem({ avatar, user, nickname }) {
     return (
-        <div className={cx("wrapper")}>
+        <Link to={`/user/${user}`} className={cx("wrapper")}>
             <div className={cx("avatar")}>
                 <CircleAvatar url={avatar} size={42} />
             </div>
@@ -17,7 +18,7 @@ function UserItem({ avatar, user, nickname }) {
                     nickname ? nickname : user
                 }`}</small>
             </div>
-        </div>
+        </Link>
     );
 }
 

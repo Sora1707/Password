@@ -20,7 +20,11 @@ export function userSearch(query) {
     const results = [];
 
     for (const [username, data] of Object.entries(users)) {
-        if (related(query, { username }, "username")) {
+        const object = { username, ...data };
+        if (
+            related(query, object, "username") ||
+            related(query, object, "nickname")
+        ) {
             results.push([username, data]);
         }
     }

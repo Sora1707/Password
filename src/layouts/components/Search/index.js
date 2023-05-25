@@ -5,7 +5,7 @@ import {
     faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Tippy from "@tippyjs/react";
 import HeadlessTippy from "@tippyjs/react/headless";
 
@@ -17,31 +17,61 @@ import CircleAvatar from "~/components/CircleAvatar";
 import UserItem from "~/components/UserItem";
 import AccountItem from "~/components/AccountItem";
 
+import { useDebounce } from "~/hooks";
+
 // VARIABLES
 const cx = getStyle(require("./Search.module.scss").default);
-const users = require("~/database/users.json");
-const accounts = require("~/database/accounts.json");
+
+const SEARCH_DELAY = 1000;
+const USER = "soravn";
 
 function Search() {
-    const [searchResult, setSearchResult] = useState("");
-    const [usersResult, setUsersResult] = useState(Object.entries(users));
-    const [accountsResult, setAccountsResult] = useState(accounts);
+    const [searchValue, setSearchValue] = useState("");
+    const [searchResult, setSearchResult] = useState({
+        users: [],
+        accounts: [],
+    });
+    const [showResult, setShowResult] = useState(false);
+
+    const searchDebounceValue = useDebounce(searchValue, SEARCH_DELAY);
+
+    const inputRef = useRef();
 
     useEffect(() => {
-        console.log(searchResult);
-        const newUsers = userSearch(searchResult);
-        const newAccounts = accountSearch(searchResult);
-        setUsersResult(newUsers);
-        setAccountsResult(newAccounts);
-    }, [searchResult]);
+        const newUsers = userSearch(searchDebounceValue);
+        const newAccounts = accountSearch(searchDebounceValue);
+        setSearchResult({
+            users: newUsers,
+            accounts: newAccounts,
+        });
+    }, [searchDebounceValue]);
 
+    const usersResult = searchResult.users;
+    const accountsResult = searchResult.accounts;
+
+    // HANDLERS
     const handleChange = e => {
-        setSearchResult(e.target.value);
+        setSearchValue(e.target.value);
+    };
+
+    const handleClickOutside = () => {
+        setShowResult(false);
+    };
+
+    const handleClearSearch = () => {
+        setSearchValue("");
+        setSearchResult({ users: [], accounts: [] });
+        inputRef.current.focus();
     };
 
     return (
         <HeadlessTippy
             interactive
+            visible={
+                showResult &&
+                (usersResult.length !== 0 || accountsResult.length !== 0)
+            }
+            onClickOutside={handleClickOutside}
             render={attrs => {
                 return (
                     <div
@@ -70,13 +100,14 @@ function Search() {
                             ) : (
                                 <h5 className={cx("search-title")}>Account</h5>
                             )}
-                            {accountsResult.map((account, index) => {
+                            {accountsResult.map(account => {
                                 return (
                                     <AccountItem
-                                        key={index}
+                                        key={account.id}
                                         title={account.title}
                                         user={account.user}
                                         app={account.app}
+                                        id={account.id}
                                     />
                                 );
                             })}
@@ -87,13 +118,19 @@ function Search() {
         >
             <div className={cx("search")}>
                 <input
-                    value={searchResult}
+                    ref={inputRef}
+                    value={searchValue}
                     placeholder="Search for something..."
                     onChange={handleChange}
+                    onFocus={() => setShowResult(true)}
                 />
-                {/* <button className={cx("clear")}>
-                <FontAwesomeIcon icon={faCircleXmark} />
-            </button> */}
+                {searchValue === "" ? (
+                    false
+                ) : (
+                    <button className={cx("clear")} onClick={handleClearSearch}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+                )}
                 {/* <button className={cx("loading")}>
                 <FontAwesomeIcon icon={faSpinner} />
             </button> */}

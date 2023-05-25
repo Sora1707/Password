@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getStyle } from "~/utils";
 import { appIcons } from "~/utils";
+import { Link } from "react-router-dom";
 
 const cx = getStyle(require("./AccountItem.module.scss").default);
 
-function AccountItem({ title, user, app = "default" }) {
+function AccountItem({ title, user, id, app = "default" }) {
     return (
-        <div className={cx("wrapper")}>
+        <Link to={`/account/${id}`} className={cx("wrapper")}>
             <div className={cx("icon")}>
                 <FontAwesomeIcon {...appIcons[app]} />
             </div>
@@ -16,7 +17,7 @@ function AccountItem({ title, user, app = "default" }) {
                 <h4 className={cx("title")}>{title}</h4>
                 <small className={cx("user")}>{user}</small>
             </div>
-        </div>
+        </Link>
     );
 }
 
