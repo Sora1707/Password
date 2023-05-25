@@ -8,6 +8,9 @@
     }
 }
 
+.active {
+    color: var(--primary-color) !important;
+}
 .avatar {
     margin-right: 16px;
 }
@@ -27,6 +30,7 @@
 .nickname {
     font-size: 1.4rem;
     line-height: 20px;
-    color: rgba(22, 24, 35, 0.5);
+    color: rgb(22, 24, 35);
+    opacity: 50%;
     font-weight: 400;
 }

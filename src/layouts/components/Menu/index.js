@@ -14,10 +14,15 @@ function Menu({ children, options }) {
 
     const current = history[history.length - 1];
 
+    const handleReset = () => {
+        setHistory([{ title: "Menu", data: options }]);
+    };
+
     return (
         <Tippy
             interactive
             placement="bottom-start"
+            onHide={handleReset}
             render={attrs => {
                 return (
                     <div className={cx("menu")} {...attrs}>

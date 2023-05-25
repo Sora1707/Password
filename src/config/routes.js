@@ -2,7 +2,7 @@ const routes = {
     home: "/",
     add: "/add",
     account: "/account/:id",
-    profile: "/user/@:user",
+    user: "/user/:user",
 };
 
 export default routes;
