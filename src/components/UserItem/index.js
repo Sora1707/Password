@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 
 const cx = getStyle(require("./UserItem.module.scss").default);
 
-function UserItem({ avatar, user, nickname, active }) {
+function UserItem({ avatar, user, nickname, active, filter }) {
+    const to = filter ? `/filter/${user}` : `/user/${user}`;
+
     return (
-        <Link to={`/user/${user}`} className={cx("wrapper")}>
+        <Link to={to} className={cx("wrapper")}>
             <div className={cx("avatar")}>
                 <CircleAvatar url={avatar} size={42} />
             </div>

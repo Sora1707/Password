@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import AccountBox from "~/components/AccountBox";
+import Content from "../components/Content";
 
 import { getStyle } from "~/utils";
 
@@ -12,9 +12,7 @@ function DefaultLayout() {
             <Header />
             <div className={cx("container")}>
                 <Sidebar />
-                <div className={cx("content")}>
-                    <AccountBox />
-                </div>
+                <Content />
             </div>
         </div>
     );

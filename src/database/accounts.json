@@ -30,5 +30,13 @@
         "username": "test@gmail.com",
         "password": "test123",
         "id": 3
+    },
+    {
+        "title": "Aternos",
+        "app": "aternos",
+        "user": "legendavrs",
+        "username": "test@gmail.com",
+        "password": "test123",
+        "id": 4
     }
 ]

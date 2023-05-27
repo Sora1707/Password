@@ -16,23 +16,28 @@ function Sidebar() {
 
     return (
         <div className={cx("wrapper")}>
-            <h5 className={cx("title")}>Users</h5>
-            <div className={cx("content")}>
-                <UserItem
-                    active={userPath === "all"}
-                    avatar={ALL_AVATAR}
-                    user={"all"}
-                    nickname={"Get all user"}
-                />
-                {users.map(([user, { avatar, nickname }]) => {
-                    return (
-                        <UserItem
-                            active={userPath === user}
-                            key={user}
-                            {...{ user, avatar, nickname }}
-                        />
-                    );
-                })}
+            <div className={cx("temp")}></div>
+            <div className={cx("sidebar")}>
+                <h5 className={cx("title")}>Users</h5>
+                <div className={cx("content")}>
+                    <UserItem
+                        filter
+                        active={userPath === "all"}
+                        avatar={ALL_AVATAR}
+                        user={"all"}
+                        nickname={"Get all user"}
+                    />
+                    {users.map(([user, { avatar, nickname }]) => {
+                        return (
+                            <UserItem
+                                filter
+                                active={userPath === user}
+                                key={user}
+                                {...{ user, avatar, nickname }}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

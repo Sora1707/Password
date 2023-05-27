@@ -17,6 +17,9 @@ for (const { app, color } of supportedApps) {
     };
 }
 
-appIcons.default = NormalIcons["faGlobe"];
+appIcons.default = {
+    icon: NormalIcons["faGlobe"],
+    color: "black",
+};
 
 export default appIcons;

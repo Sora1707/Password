@@ -5,7 +5,7 @@ import { routes } from "../config";
 const publicRoutes = [
     { path: routes.home },
     { path: routes.add, layout: SingleBox },
-    { path: routes.user },
+    { path: routes.filter },
 ];
 
 // Logged-in user

@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 const cx = getStyle(require("./AccountItem.module.scss").default);
 
 function AccountItem({ title, user, id, app = "default" }) {
+    if (!appIcons[app]) {
+        app = "default";
+    }
+
     return (
         <Link to={`/account/${id}`} className={cx("wrapper")}>
             <div className={cx("icon")}>

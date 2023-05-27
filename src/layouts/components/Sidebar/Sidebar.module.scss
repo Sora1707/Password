@@ -1,4 +1,13 @@
 .wrapper {
+}
+
+.temp {
+    width: var(--sidebar-width);
+    height: 1px;
+}
+
+.sidebar {
+    position: fixed;
     width: var(--sidebar-width);
     padding-top: var(--default-layout-padding-top);
 }

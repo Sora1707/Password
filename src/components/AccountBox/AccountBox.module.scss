@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     display: flex;
     width: 700px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
@@ -13,6 +14,21 @@
     }
 }
 
+.delete-icon {
+    width: 15px;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    color: rgb(242, 38, 38);
+
+    &:hover {
+        color: red;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+// DISPLAY
 .display-field {
     display: flex;
     flex-direction: column;
@@ -28,22 +44,23 @@
 
 // App
 .app-field {
-    padding-left: 8px;
 }
 
-.app-name {
+.app-title {
     margin-left: 28px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
 }
 
 .app-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 3px;
+    width: 40px;
+    margin-left: 6px;
 }
 
 // User
 .avatar {
-    margin-right: 16px;
+    margin-right: 25px;
 }
 
 .content {
@@ -69,6 +86,7 @@
 // Data
 
 .data-field {
+    padding-top: 10px;
     width: 50%;
 }
 
@@ -105,8 +123,13 @@
         transform: translateY(-50%);
 
         &:hover {
+            cursor: pointer;
             color: #6edff6;
             transform: translateY(-50%) scale(1.05);
         }
     }
+}
+
+.input.active {
+    box-shadow: 0 0 5px 1px #37b7f2;
 }
