@@ -3,9 +3,10 @@ import { routes } from "../config";
 
 // Anonymous user
 const publicRoutes = [
-    { path: routes.home },
-    { path: routes.add, layout: SingleBox },
+    { path: routes.addUser, layout: SingleBox },
+    { path: routes.addAccount, layout: SingleBox },
     { path: routes.filter },
+    { path: routes.home },
 ];
 
 // Logged-in user

@@ -7,7 +7,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Tippy from "@tippyjs/react/headless";
 
 // LOCAL MODULES/FILE
@@ -60,6 +60,14 @@ const userOptions = [
 ];
 
 function Header() {
+    const location = useLocation();
+    const to =
+        location.pathname === routes.addAccount
+            ? routes.addUser
+            : routes.addAccount;
+    const addText =
+        location.pathname === routes.addAccount ? "User" : "Account";
+
     return (
         <div className={cx("wrapper")}>
             <Link to={routes.home} className={cx("logo-link")}>
@@ -70,12 +78,13 @@ function Header() {
 
             <div className={cx("actions")}>
                 <Button
-                    to={routes.add}
+                    to={to}
                     plain
                     beforeIcon={<FontAwesomeIcon icon={faPlus} />}
                 >
-                    Add
+                    New {addText}
                 </Button>
+
                 <button className={cx("dark-mode")}>
                     <FontAwesomeIcon icon={faMoon} />
                 </button>
